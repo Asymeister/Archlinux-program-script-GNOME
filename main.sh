@@ -64,7 +64,7 @@ version_gt() { test "$(printf '%s\n' "$@" | sort -V | head -n 1)" != "$1"; }
 # =============================================================================
 
 CURRENT_VERSION="1.2"
-GITHUB_REPO="https://raw.githubusercontent.com/username/repo/main" # Cseréld ki a valós GitHub repódra
+GITHUB_REPO="https://github.com/Asymeister/Archlinux-program-script-GNOME/blob/main" # Cseréld ki a valós GitHub repódra
 # Replace with your actual GitHub repo
 SCRIPT_NAME="main.sh"
 
