@@ -6,24 +6,7 @@
 Arch Linux - PROGRAM Installer Script
 Ez a script egy modern, grafikus felhasználói felülettel (GUI) rendelkező telepítő, amely automatizálja az Arch Linux alaprendszered testreszabását. A Program Installer célja, hogy a felhasználók könnyedén és gyorsan telepíthessék azokat az alapvető és kiegészítő szoftvereket, amelyekre a mindennapi használathoz szükségük van, a GNOME asztali környezet tiszta alapjaira építve.
 
-Fontos: Ez a script feltételezi, hogy az Arch Linux alaprendszere már telepítve van. A telepítést nem a nulláról végzi, hanem a meglévő rendszeren futtatva automatizálja a szoftverek telepítését és konfigurálását.
-
-🚀 Főbb Jellemzők
-Grafikus Felhasználói Felület (GUI): A script Zenity-t használ, így egy interaktív ablakban, egyszerűen és vizuálisan választhatod ki a telepíteni kívánt programokat.
-
-Moduláris felépítés: A main.sh szkript intelligensen kezeli a nyelvválasztást, és szükség esetén elindítja a magyar (hu_installer.sh) vagy angol (en_installer.sh) telepítő-modult.
-
-Automatikus frissítés: A script induláskor ellenőrzi a GitHub-on lévő legújabb verziót, és felajánlja a frissítést, biztosítva, hogy mindig a legnaprakészebb funkciókat használd.
-
-Okos függőségkezelés: Automatikusan telepíti a yay (AUR helper) és a flatpak csomagkezelőket, valamint hozzáadja a Flathub repozitóriumot a széleskörű programválaszték érdekében.
-
-Robusztus KVM/QEMU beállítás: A script egy komplex telepítési folyamatot végez el a KVM/QEMU-hoz, beleértve a csomagok telepítését, a felhasználó csoportokhoz adását, és a libvirtd szolgáltatás beállítását.
-
-Részletes visszajelzés: A telepítési folyamat alatt a script folyamatosan információs, sikeres, figyelmeztető és hibaüzeneteket jelenít meg, így mindig tudni fogod, mi történik.
-
-Rendszer optimalizálás: A script észleli a futó kernel típusát (pl. linux-lts, linux-zen) és automatikusan telepíti a hozzá tartozó linux-headers csomagot.
-
-📋 Telepíthető Szoftverek
+<h1 align="center">📋 Telepíthető Szoftverek</h1>
 A script egy széleskörű listát kínál a legnépszerűbb és leggyakrabban használt programokból, beleértve az alábbiakat:
 
 Rendszereszközök: Fastfetch, KDEConnect, Pamac
