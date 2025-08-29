@@ -1,9 +1,8 @@
 <p align="center">
-<img src="https://raw.githubusercontent.com/archlinux/artwork/master/logo/archlinux-logo-light-bg.svg" alt="Arch Linux Logo" width="150"/>
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/36/GNOME_logo.svg" alt="GNOME Logo" width="150"/>
+<img src="[https://raw.githubusercontent.com/archlinux/artwork/master/logo/archlinux-logo-light-bg.svg](https://upload.wikimedia.org/wikipedia/commons/e/e8/Archlinux-logo-standard-version.png)" alt="Arch Linux Logo" width="150"/>
 </p>
 
-<h1 align="center">Arch Linux - Hunter Installer Script</h1>
+<h1 align="center">Arch Linux - PROGRAM Installer Script - GNOME</h1>
 Arch Linux - PROGRAM Installer Script
 Ez a script egy modern, grafikus felhasználói felülettel (GUI) rendelkező telepítő, amely automatizálja az Arch Linux alaprendszered testreszabását. A Program Installer célja, hogy a felhasználók könnyedén és gyorsan telepíthessék azokat az alapvető és kiegészítő szoftvereket, amelyekre a mindennapi használathoz szükségük van, a GNOME asztali környezet tiszta alapjaira építve.
 
