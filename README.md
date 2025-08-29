@@ -57,6 +57,13 @@ A script használata rendkívül egyszerű.
 
 ---
 
+## 🚧 Következő update...
+> ** NVIDIA Támogatottság.
+> ** Csak az elsődleges monitoron jelenjen meg a bejelentkező felület.
+> ** Programok bővítése.
+
+---
+
 ## ❗ Fontos Megjegyzések
 
 > **A szkript használata teljes mértékben a te felelősségedre történik.** Bár a script robusztus hibakezelést tartalmaz, használat előtt minden fontos adatot ments le. A projekt szerzője nem vállal felelősséget a felmerülő problémákért.
