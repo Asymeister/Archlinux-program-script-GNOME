@@ -8,6 +8,16 @@
 <h3 align="center">❗A program telepítő script csak AMD-s gépen volt tesztelve❗</h3>
 <h3 align="center">❗A STEAM biztos hogy nem fog még működni NVIDIA kártyán❗</h3>
 
+---
+
+## 🔐 Támogatottság
+- [x] AMD CPU x AMD GPU
+- [ ] AMD CPU x NVIDIA
+- [x] INTEL CPU x AMD GPU
+- [ ] INTEL CPU x NVIDIA
+
+---
+
 ## 🚀 Jellemzők
 
 - [x] **Grafikus telepítő:** A Zenity-alapú grafikus felület egyszerűvé teszi a programok kiválasztását.
