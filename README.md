@@ -53,7 +53,7 @@ A script használata rendkívül egyszerű.
 
 ## 🤝 Hozzájárulás
 
-A visszajelzéseket és a hozzájárulásokat örömmel fogadom! Ha hibát találsz vagy van egy ötleted a script fejlesztésére, kérlek, nyiss egy [issue-t](https://github.com/a_felhasználóneved/a_projekted_neve/issues) vagy küldj be egy [pull request-et](https://github.com/a_felhasználóneved/a_projekted_neve/pulls).
+A visszajelzéseket és a hozzájárulásokat örömmel fogadom! Ha hibát találsz vagy van egy ötleted a script fejlesztésére, kérlek, nyiss egy [issue-t](https://github.com/Asymeister/Archlinux-program-script-GNOME/issues) vagy küldj be egy [pull request-et](https://github.com/Asymeister/Archlinux-program-script-GNOME/pulls).
 
 ---
 
@@ -63,10 +63,4 @@ Ez a projekt az **[MIT Licenc](https://opensource.org/licenses/MIT)** alatt van.
 
 ---
 
-**Készítette: A te neved**
-
----
-
-Ez a javaslat tükrözi a képen látható elrendezést: egyértelmű, nagy szakaszcímek, alatta rövid leírások és listák. A `---` elválasztók segítenek a vizuális tagolásban, a `#` és `##` pedig hierarchiát ad a címeknek.
-
-Ha elküldöd a saját logódat, a kódban egyszerűen lecseréled a `src="./docs/arch_gnome_logo.png"` részt a te fájlnevedre.
+*Készítette:* ***Asymeiter***
