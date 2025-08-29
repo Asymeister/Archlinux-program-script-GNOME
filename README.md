@@ -1,12 +1,8 @@
-# Arch Linux - Hunter Installer Script
-
 <p align="center">
   <img src="./docs/arch_gnome_logo.png" alt="Arch Linux GNOME Fúzió Logó" width="150"/>
 </p>
 
 <h1 align="center">Hunter Installer Script</h1>
-
----
 
 ## 🚀 Jellemzők
 
