@@ -2,15 +2,15 @@
   <img src="./docs/arch_gnome_logo.png" alt="Arch Linux GNOME Fúzió Logó" width="150"/>
 </p>
 
-<h1 align="center">Hunter Installer Script</h1>
+<h1 align="center">PROGRAM Installer Script</h1>
 
 ## 🚀 Jellemzők
 
-* **Grafikus telepítő:** A Zenity-alapú grafikus felület egyszerűvé teszi a programok kiválasztását.
-* **Automatikus frissítés:** A script induláskor ellenőrzi és letölti a legújabb verziót GitHub-ról.
-* **Intelligens függőségkezelés:** Automatikusan telepíti a `yay` (AUR helper) és a `flatpak` csomagkezelőket, beleértve a Flathub repozitóriumot.
-* **Kernel felismerés:** Észleli a futó kernel típusát (pl. `lts`, `zen`) és telepíti a hozzá tartozó headereket.
-* **Kiemelt támogatás a KVM/QEMU-hoz:** Egyetlen választással telepíthető és konfigurálható a teljes virtualizációs környezet.
+- [x] **Grafikus telepítő:** A Zenity-alapú grafikus felület egyszerűvé teszi a programok kiválasztását.
+- [x] **Automatikus frissítés:** A script induláskor ellenőrzi és letölti a legújabb verziót GitHub-ról.
+- [x] **Intelligens függőségkezelés:** Automatikusan telepíti a `yay` (AUR helper) és a `flatpak` csomagkezelőket, beleértve a Flathub repozitóriumot.
+- [x] **Kernel felismerés:** Észleli a futó kernel típusát (pl. `lts`, `zen`) és telepíti a hozzá tartozó headereket.
+- [x] **Kiemelt támogatás a KVM/QEMU-hoz:** Egyetlen választással telepíthető és konfigurálható a teljes virtualizációs környezet.
 
 ---
 
@@ -18,10 +18,10 @@
 
 A script egy gondosan összeállított listát kínál a legnépszerűbb és leghasznosabb programokból, beleértve:
 
-* **Rendszereszközök** (`Fastfetch`, `Pamac`, `KDEConnect`)
-* **Multimédia** (`EasyEffects`, `VLC`, `OBS Studio`, `Jellyfin Media Player`)
-* **Játék** (`Bottles`, `Lutris`, `Heroic Games Launcher`, `Gamemode`, `Corectrl`, `MangoHud`)
-* **Termelékenység** (`OnlyOffice`, `KeePassXC`, `Discord`, `Vivaldi`)
+- [x] **Rendszereszközök** (`Fastfetch`, `Pamac`, `KDEConnect`)
+- [x] **Multimédia** (`EasyEffects`, `VLC`, `OBS Studio`, `Jellyfin Media Player`)
+- [x] **Játék** (`Bottles`, `Lutris`, `Heroic Games Launcher`, `Gamemode`, `Corectrl`, `MangoHud`)
+- [x] **Termelékenység** (`OnlyOffice`, `KeePassXC`, `Discord`, `Vivaldi`)
 
 ---
 
@@ -63,4 +63,4 @@ Ez a projekt az **[MIT Licenc](https://opensource.org/licenses/MIT)** alatt van.
 
 ---
 
-*Készítette:* ***Asymeiter***
+*Készítette:* ***Asymeister***
