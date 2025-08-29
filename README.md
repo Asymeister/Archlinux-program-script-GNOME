@@ -1,10 +1,22 @@
 <div align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Archlinux-logo-standard-version.png" alt="Arch Linux GNOME Fúzió Logó" width="250"/>
-  X
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/68/Gnomelogo.svg" alt="Arch Linux GNOME Fúzió Logó" width="100"/>
+  <img src="https://github.com/Asymeister/Archlinux-program-script-GNOME/blob/main/img/arch.png?raw=true" alt="Arch logo" width="100"/>
+  <img src="https://github.com/Asymeister/Archlinux-program-script-GNOME/blob/main/img/amd.png?raw=true" alt="radeon Logo" width="100"/>
+  <img src="https://github.com/Asymeister/Archlinux-program-script-GNOME/blob/main/img/gnome.png?raw=true" alt="gnome Logo" width="100"/>
 </div>
 
-<h1 align="center">PROGRAM Installer Script</h1>
+<h1 align="center">PROGRAM TELEPÍTŐ SCRIPT</h1>
+<h3 align="center">❗A program telepítő script csak AMD-s gépen volt tesztelve❗</h3>
+<h3 align="center">❗A STEAM biztos hogy nem fog még működni NVIDIA kártyán❗</h3>
+
+---
+
+## 🔐 Támogatottság
+- [x] AMD CPU x AMD GPU
+- [ ] AMD CPU x NVIDIA
+- [x] INTEL CPU x AMD GPU
+- [ ] INTEL CPU x NVIDIA
+
+---
 
 ## 🚀 Jellemzők
 
