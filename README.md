@@ -4,7 +4,7 @@
   <img src="https://github.com/Asymeister/Archlinux-program-script-GNOME/blob/main/img/gnome.png?raw=true" alt="gnome Logo" width="100"/>
 </div>
 
-<h1 align="center">PROGRAM Installer Script</h1>
+<h1 align="center">PROGRAM TELEPÍTŐ SCRIPT</h1>
 
 ## 🚀 Jellemzők
 
