@@ -33,7 +33,7 @@ A script használata rendkívül egyszerű.
 
 1.  **Klónozd a repót:**
     ```bash
-    git clone [https://github.com/Asymeister/Archlinux-program-script-GNOME.git](https://github.com/Asymeister/Archlinux-program-script-GNOME.git)
+    git clone https://github.com/Asymeister/Archlinux-program-script-GNOME.git
     cd Archlinux-program-script-GNOME
     ```
 2.  **Futtasd a fő scriptet:**
