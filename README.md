@@ -38,6 +38,7 @@ A script használata rendkívül egyszerű.
     ```
 2.  **Futtasd a fő scriptet:**
     ```bash
+    sudo chmod +x ./main.sh
     ./main.sh
     ```
 3.  **Válassz nyelvet és programokat:** Kövesd a grafikus felületen megjelenő utasításokat a telepítéshez.
