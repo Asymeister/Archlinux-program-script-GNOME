@@ -58,9 +58,9 @@ A script használata rendkívül egyszerű.
 ---
 
 ## 🚧 Következő update...
-* ** NVIDIA Támogatottság.
-* ** Csak az elsődleges monitoron jelenjen meg a bejelentkező felület.
-* ** Programok bővítése.
+* ** NVIDIA Támogatottság. **
+* ** Csak az elsődleges monitoron jelenjen meg a bejelentkező felület. **
+* ** Programok bővítése. **
 
 ---
 
