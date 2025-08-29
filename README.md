@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="(https://archlinux.org/static/logos/archlinux-logo-black-90dpi.png)" alt="Arch Linux GNOME Fúzió Logó" width="150"/>
+  <img src="https://archlinux.org/static/logos/archlinux-logo-black-90dpi.png" alt="Arch Linux GNOME Fúzió Logó" width="150"/>
 </p>
 
 <h1 align="center">PROGRAM Installer Script</h1>
