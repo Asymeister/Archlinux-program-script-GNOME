@@ -6,7 +6,7 @@
 Arch Linux - PROGRAM Installer Script
 Ez a script egy modern, grafikus felhasználói felülettel (GUI) rendelkező telepítő, amely automatizálja az Arch Linux alaprendszered testreszabását. A Program Installer célja, hogy a felhasználók könnyedén és gyorsan telepíthessék azokat az alapvető és kiegészítő szoftvereket, amelyekre a mindennapi használathoz szükségük van, a GNOME asztali környezet tiszta alapjaira építve.
 
-<h1 align="center">📋 Telepíthető Szoftverek</h1>
+<p align="left">📋 Telepíthető Szoftverek</p>
 A script egy széleskörű listát kínál a legnépszerűbb és leggyakrabban használt programokból, beleértve az alábbiakat:
 
 Rendszereszközök: Fastfetch, KDEConnect, Pamac
