@@ -12,7 +12,7 @@
 - [x] **Automatikus frissítés:** A script induláskor ellenőrzi és letölti a legújabb verziót GitHub-ról.
 - [x] **Intelligens függőségkezelés:** Automatikusan telepíti a `yay` (AUR helper) és a `flatpak` csomagkezelőket, beleértve a Flathub repozitóriumot.
 - [x] **Kernel felismerés:** Észleli a futó kernel típusát (pl. `lts`, `zen`) és telepíti a hozzá tartozó headereket.
-- [x] **Kiemelt támogatás a KVM/QEMU-hoz:** Egyetlen választással telepíthető és konfigurálható a teljes virtualizációs környezet.
+- [x] **Automatikus sötétmód:**Segít teljes mértékben elérhetővé tenni a sötét módot.
 
 ---
 
@@ -22,7 +22,7 @@ A script egy gondosan összeállított listát kínál a legnépszerűbb és leg
 
 - [x] **Rendszereszközök** (`Fastfetch`, `Pamac`, `KDEConnect`)
 - [x] **Multimédia** (`EasyEffects`, `VLC`, `OBS Studio`, `Jellyfin Media Player`)
-- [x] **Játék** (`Bottles`, `Lutris`, `Heroic Games Launcher`, `Gamemode`, `Corectrl`, `MangoHud`)
+- [x] **Játék** (`Steam``Bottles`, `Lutris`, `Heroic Games Launcher`, `Gamemode`, `Corectrl`, `MangoHud`)
 - [x] **Termelékenység** (`OnlyOffice`, `KeePassXC`, `Discord`, `Vivaldi`)
 
 ---
