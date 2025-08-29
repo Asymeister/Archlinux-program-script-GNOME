@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # =============================================================================
-# HUNTER INSTALLER SCRIPT - Arch Linux
-# HUNTER TELEPÍTŐ SZKRIPT - Arch Linux
-# Verzió: 4.2 (Végső verzió)
-# Version: 4.2 (Final version)
-# Leírás: Telepítés előtti értesítéssel és hibakezeléssel, verzióellenőrzéssel
-# Description: With pre-installation notification, error handling, and version check
+# PROGRAM INSTALLER SCRIPT - Arch Linux
+# PROGRAM TELEPÍTŐ SCRIPT - Arch Linux
+# Verzió: 1.2 (Végső verzió)
+# Version: 1.2 (Final version)
+# Leírás: Program telepítő előjárója (Linux-header telepítése + programok + sötét téma beállítása)
+# Description: Program installer forerunner (install Linux header + programs + set dark theme)
 # =============================================================================
 
 # Kéri a jelszót a sudo jogosultságokhoz, és életben tartja azokat

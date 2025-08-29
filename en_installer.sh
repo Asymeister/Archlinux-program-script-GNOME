@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # =============================================================================
-# HUNTER INSTALLER SCRIPT - Arch Linux (Final Version)
-# Version: 3.5 (Zenity bug fix 3)
-# Description: Installation with pre-installation notices and error handling
+# PROGRAM INSTALLER SCRIPT - Arch Linux GNOME(Final Version)
+# Version: 1.0
+# Description: Program Installation
 # =============================================================================
 
 # BASIC ERROR HANDLING
@@ -110,7 +110,7 @@ install_package() {
 # =============================================================================
 
 clear
-print_title "HUNTER INSTALLER - Arch Linux"
+print_title "PROGRAM INSTALLER - Arch Linux"
 print_info "Starting the installation process..."
 echo
 
@@ -200,7 +200,7 @@ declare -A programs=(
 CHOICES=$(zenity --list --checklist \
     --title="Program Selection" \
     --width=900 \
-    --height=600 \
+    --height=1100 \
     --column="Mark" \
     --column="Program Name" \
     --column="Source" \
@@ -223,6 +223,7 @@ CHOICES=$(zenity --list --checklist \
     FALSE "OBS Studio" "Flatpak" "Screen recording and streaming" \
     FALSE "OnlyOffice" "Yay" "Office suite (binary version)" \
     FALSE "Pamac" "Yay" "Graphical package manager" \
+    FALSE "Steam" "Pacman" "Zene-streamelő kliens" \
     FALSE "Spotify" "Pacman" "Music streaming client" \
     FALSE "VLC" "Flatpak" "Multimedia player" \
     FALSE "Vivaldi" "Pacman" "Versatile web browser" \
@@ -303,6 +304,9 @@ for PROGRAM in "${PROGRAMS[@]}"; do
             ;;
         "Pamac")
             if install_package "Yay" "pamac-aur"; then INSTALL_SUCCESS=true; fi
+            ;;
+        "Steam")
+            if install_package "Pacman" "steam"; then INSTALL_SUCCESS=true; fi
             ;;
         "Spotify")
             if install_package "Pacman" "spotify-launcher"; then INSTALL_SUCCESS=true; fi
@@ -440,5 +444,5 @@ else
 fi
 
 print_divider
-echo -e "${GREEN}${BOLD}The Hunter installer script successfully completed!${RESET}"
+echo -e "${GREEN}${BOLD}The PROGRAM installer script successfully completed!${RESET}"
 print_divider

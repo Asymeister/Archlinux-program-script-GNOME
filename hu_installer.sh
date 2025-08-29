@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # =============================================================================
-# HUNTER INSTALLER SCRIPT - Arch Linux (Végleges verzió)
-# Verzió: 3.5 (Zenity hibajavítás 3)
-# Leírás: Telepítés előtti értesítéssel és hibakezeléssel
+# PROGRAM INSTALLER SCRIPT - Arch Linux GNOME (Végleges verzió)
+# Verzió: 1.0
+# Leírás: Programok telepítése
 # =============================================================================
 
 # ALAPVETŐ HIBAKEZELÉS
@@ -110,7 +110,7 @@ install_package() {
 # =============================================================================
 
 clear
-print_title "HUNTER TELEPÍTŐ - Arch Linux"
+print_title "PROGRAM TELEPÍTŐ - Arch Linux"
 print_info "Kezdődik a telepítési folyamat..."
 echo
 
@@ -200,7 +200,7 @@ declare -A programs=(
 CHOICES=$(zenity --list --checklist \
     --title="Programok kiválasztása" \
     --width=900 \
-    --height=600 \
+    --height=1100 \
     --column="Jelölés" \
     --column="Program neve" \
     --column="Forrás" \
@@ -223,6 +223,7 @@ CHOICES=$(zenity --list --checklist \
     FALSE "OBS Studio" "Flatpak" "Képernyőfelvétel és streamelés" \
     FALSE "OnlyOffice" "Yay" "Irodai programcsomag (bináris verzió)" \
     FALSE "Pamac" "Yay" "Grafikus csomagkezelő" \
+    FALSE "Steam" "Pacman" "Zene-streamelő kliens" \
     FALSE "Spotify" "Pacman" "Zene-streamelő kliens" \
     FALSE "VLC" "Flatpak" "Multimédiás lejátszó" \
     FALSE "Vivaldi" "Pacman" "Sokoldalú webböngésző" \
@@ -303,6 +304,9 @@ for PROGRAM in "${PROGRAMS[@]}"; do
             ;;
         "Pamac")
             if install_package "Yay" "pamac-aur"; then INSTALL_SUCCESS=true; fi
+            ;;
+        "Steam")
+            if install_package "Pacman" "steam"; then INSTALL_SUCCESS=true; fi
             ;;
         "Spotify")
             if install_package "Pacman" "spotify-launcher"; then INSTALL_SUCCESS=true; fi
@@ -440,5 +444,5 @@ else
 fi
 
 print_divider
-echo -e "${GREEN}${BOLD}A Hunter telepítő script sikeresen befejeződött!${RESET}"
+echo -e "${GREEN}${BOLD}A Program telepítő script sikeresen befejeződött!${RESET}"
 print_divider
