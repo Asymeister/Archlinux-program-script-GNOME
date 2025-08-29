@@ -1,7 +1,7 @@
 <div align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/Archlinux-logo-standard-version.png" alt="Arch Linux GNOME Fúzió Logó" width="250"/>
   
-  <img src="https://img.favpng.com/2/20/5/gnome-shell-ubuntu-linux-gtk-png-favpng-Y7UQfy8XLv1hBVTfEgviGqUEL.jpg" alt="Arch Linux GNOME Fúzió Logó" width="250"/>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/68/Gnomelogo.svg" alt="Arch Linux GNOME Fúzió Logó" width="250"/>
 </div>
 
 <h1 align="center">PROGRAM Installer Script</h1>
