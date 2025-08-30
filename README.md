@@ -5,7 +5,6 @@
 
 <h1 align="center">PROGRAM TELEPÍTŐ SCRIPT</h1>
 <h3 align="center">❗A program telepítő script csak AMD-s gépen volt tesztelve❗</h3>
-<h3 align="center">❗A STEAM biztos hogy nem fog még működni NVIDIA kártyán❗</h3>
 
 ---
 
