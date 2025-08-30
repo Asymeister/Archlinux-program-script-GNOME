@@ -12,9 +12,9 @@
 
 ## 🔐 Támogatottság
 - [x] AMD CPU x AMD GPU
-- [ ] AMD CPU x NVIDIA
+- [x] AMD CPU x NVIDIA
 - [x] INTEL CPU x AMD GPU
-- [ ] INTEL CPU x NVIDIA
+- [x] INTEL CPU x NVIDIA
 
 ---
 
@@ -59,9 +59,8 @@ A script használata rendkívül egyszerű.
 
 ## 🚧 Következő update...
 
-1. **NVIDIA Támogatottság.**
-2. **Csak az elsődleges monitoron jelenjen meg a bejelentkező felület.**
-3. **Programok bővítése.**
+1. **Csak az elsődleges monitoron jelenjen meg a bejelentkező felület.**
+2. **Programok folyamatos bővítése.**
 
 ---
 
