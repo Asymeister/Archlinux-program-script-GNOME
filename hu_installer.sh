@@ -261,8 +261,65 @@ for PROGRAM in "${PROGRAMS[@]}"; do
             if install_package "Flatpak" "com.usebottles.bottles"; then INSTALL_SUCCESS=true; fi
             ;;
         "Corectrl")
-            if install_package "Pacman" "corectrl"; then INSTALL_SUCCESS=true; fi
-            ;;
+	    print_install_start "CoreCTRL és felhasználói beállítások"
+	    
+	    # Telepítés pacman-nal
+	    if sudo pacman -S --noconfirm corectrl; then
+		print_success "CoreCTRL sikeresen telepítve."
+	    else
+		print_error "Hiba: A CoreCTRL telepítése sikertelen volt."
+		INSTALL_SUCCESS=false
+		continue
+	    fi
+
+	    # Autostart beállítása
+	    mkdir -p ~/.config/autostart
+	    if cp /usr/share/applications/org.corectrl.CoreCtrl.desktop ~/.config/autostart/; then
+		print_success "CoreCTRL autostart beállítva."
+	    else
+		print_warning "Figyelem: A CoreCTRL autostart beállítása sikertelen volt."
+	    fi
+
+	    # Polkit szabály hozzáadása
+	    if echo "polkit.addRule(function(action, subject) {    if ((action.id == \"org.corectrl.helper.init\" ||         action.id == \"org.corectrl.helperkiller.init\") &&        subject.local == true &&        subject.active == true &&        subject.isInGroup(\"$USER\")) {            return polkit.Result.YES;    }});" | sudo tee /etc/polkit-1/rules.d/90-corectrl.rules >/dev/null; then
+		print_success "Polkit szabály hozzáadva a felhasználói jogosultságokhoz."
+	    else
+		print_error "Hiba: A Polkit szabály hozzáadása sikertelen volt."
+		INSTALL_SUCCESS=false
+		continue
+	    fi
+
+	    # Kernel paraméterek módosítása a bootloader-től függően
+	    if [ -d "/boot/loader/entries" ]; then
+		# systemd-boot esetén
+		if sudo sed -i '/options/s/$/ amdgpu.ignore_min_pcap=1 amdgpu.ppfeaturemask=0xffffffff /' /boot/loader/entries/*.conf; then
+		    print_success "Kernel paraméterek módosítva (systemd-boot)."
+		else
+		    print_error "Hiba: A kernel paraméterek módosítása sikertelen volt."
+		    INSTALL_SUCCESS=false
+		    continue
+		fi
+	    else
+		# GRUB esetén
+		if sudo sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT="\(.*\)"/GRUB_CMDLINE_LINUX_DEFAULT="\1 amdgpu.ignore_min_pcap=1 amdgpu.ppfeaturemask=0xffffffff"/' /etc/default/grub; then
+		    print_success "Kernel paraméterek hozzáadva a GRUB konfigurációhoz."
+		    print_info "GRUB konfiguráció frissítése..."
+		    if sudo grub-mkconfig -o /boot/grub/grub.cfg; then
+		        print_success "GRUB konfiguráció sikeresen frissítve."
+		    else
+		        print_error "Hiba: A GRUB konfiguráció frissítése sikertelen volt."
+		        INSTALL_SUCCESS=false
+		        continue
+		    fi
+		else
+		    print_error "Hiba: A GRUB konfigurációs fájl módosítása sikertelen volt."
+		    INSTALL_SUCCESS=false
+		    continue
+		fi
+	    fi
+
+	    INSTALL_SUCCESS=true
+	    ;;
         "Discord")
             if install_package "Flatpak" "com.discordapp.Discord"; then INSTALL_SUCCESS=true; fi
             ;;
@@ -419,22 +476,25 @@ if [[ "$XDG_CURRENT_DESKTOP" == "GNOME" ]]; then
     fi
 fi
 
+# ...
 # 7. Újraindítás progress bárral és megszakítással
 if zenity --question --title="Újraindítás" --text="A telepítés befejeződött. Szeretné most újraindítani a rendszert a változások érvényesüléséhez?" --width=300; then
-    (
-        for i in {10..0}; do
-            PERCENT=$(( (10 - i) * 10 ))
-            echo "$PERCENT"
-            echo "# A rendszer $i másodperc múlva újraindul... (Kattints a Mégse gombra a megszakításhoz)"
+    # Progress bar a megszakítással
+    if zenity --progress --title="Újraindítás" --text="A rendszer 10 másodperc múlva újraindul..." --percentage=0 --auto-close --timeout=10 < <(
+        for i in {0..10}; do
+            echo $((i * 10))
+            echo "# A rendszer $((10 - i)) másodperc múlva újraindul..."
             sleep 1
         done
-        echo "100"
-    ) | zenity --progress --title="Újraindítás" --text="A rendszer 10 másodperc múlva újraindul..." --percentage=0 --auto-close
-    
-    if [ $? -eq 0 ]; then
+    ); then
+        # Ha a progress bar sikeresen lefutott (időtúllépés)
         print_info "Rendszer újraindítása..."
-        sudo reboot
+        print_divider
+        echo -e "${GREEN}${BOLD}A Program telepítő script sikeresen befejeződött!${RESET}"
+        print_divider
+        sudo systemctl reboot
     else
+        # Ha a felhasználó megnyomta a Cancel gombot
         print_warning "Újraindítás megszakítva."
         zenity --info --title="Megszakítva" --text="Az újraindítás megszakítva. A változások érvényesüléséhez jelentkezz ki, majd lépj be újra."
     fi
@@ -442,7 +502,3 @@ else
     print_info "Újraindítás kihagyva."
     zenity --info --title="Telepítés befejezve" --text="A rendszer nem indul újra. A változások érvényesüléséhez jelentkezz ki, majd lépj be újra."
 fi
-
-print_divider
-echo -e "${GREEN}${BOLD}A Program telepítő script sikeresen befejeződött!${RESET}"
-print_divider
