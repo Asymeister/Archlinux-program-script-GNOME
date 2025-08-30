@@ -2,7 +2,7 @@
 
 # =============================================================================
 # PROGRAM INSTALLER SCRIPT - Arch Linux GNOME (Végleges verzió)
-# Verzió: 1.0
+# Verzió: 1.2.1
 # Leírás: Programok telepítése
 # =============================================================================
 
@@ -181,6 +181,7 @@ declare -A programs=(
     ["Double Commander"]="doublecmd-qt6"
     ["EasyEffects"]="easyeffects"
     ["Fastfetch"]="fastfetch"
+    ["Flatseal"]="com.github.tchx84.Flatseal"
     ["Gamemode"]="gamemode"
     ["Heroic Games Launcher"]="com.heroicgameslauncher.hgl"
     ["Jellyfin Media Player"]="jellyfin-media-player"
@@ -200,7 +201,7 @@ declare -A programs=(
 CHOICES=$(zenity --list --checklist \
     --title="Programok kiválasztása" \
     --width=900 \
-    --height=1100 \
+    --height=1000 \
     --column="Jelölés" \
     --column="Program neve" \
     --column="Forrás" \
@@ -212,6 +213,7 @@ CHOICES=$(zenity --list --checklist \
     FALSE "Double Commander" "Pacman" "Kéttáblás fájlkezelő (Qt6)" \
     FALSE "EasyEffects" "Pacman" "Hang effektek a Pipewire-hez" \
     FALSE "Fastfetch" "Pacman" "Rendszerinformációk terminálban" \
+    FALSE "Flatseal" "Flatpak" "Flatpak alkalmazások engedélyeinek kezelése" \
     FALSE "Gamemode" "Pacman" "Játékok teljesítményét növelő segédprogram" \
     FALSE "Heroic Games Launcher" "Flatpak" "Játékindító Epic Games és GOG-hoz" \
     FALSE "Jellyfin Media Player" "Yay" "Jellyfin médiakiszolgáló kliense" \
@@ -223,7 +225,7 @@ CHOICES=$(zenity --list --checklist \
     FALSE "OBS Studio" "Flatpak" "Képernyőfelvétel és streamelés" \
     FALSE "OnlyOffice" "Yay" "Irodai programcsomag (bináris verzió)" \
     FALSE "Pamac" "Yay" "Grafikus csomagkezelő" \
-    FALSE "Steam" "Pacman" "Zene-streamelő kliens" \
+    FALSE "Steam" "Pacman" "Játék könyvtár és launcher" \
     FALSE "Spotify" "Pacman" "Zene-streamelő kliens" \
     FALSE "VLC" "Flatpak" "Multimédiás lejátszó" \
     FALSE "Vivaldi" "Pacman" "Sokoldalú webböngésző" \
@@ -332,6 +334,8 @@ for PROGRAM in "${PROGRAMS[@]}"; do
         "Fastfetch")
             if install_package "Pacman" "fastfetch"; then INSTALL_SUCCESS=true; fi
             ;;
+        "Flatseal")
+            if install_package "Flatpak" "com.github.tchx84.Flatseal"; then INSTALL_SUCCESS=true; fi
         "Gamemode")
             if install_package "Pacman" "gamemode"; then INSTALL_SUCCESS=true; fi
             ;;
@@ -361,10 +365,163 @@ for PROGRAM in "${PROGRAMS[@]}"; do
             ;;
         "Pamac")
             if install_package "Yay" "pamac-aur"; then INSTALL_SUCCESS=true; fi
-            ;;
-        "Steam")
-            if install_package "Pacman" "steam"; then INSTALL_SUCCESS=true; fi
-            ;;
+            ;;    
+	"Steam")
+            print_install_start "Steam és videókártya optimalizációk"
+            
+            # Videókártya detektálása
+            GPU_TYPE=""
+            if lspci | grep -i "nvidia" > /dev/null; then
+                GPU_TYPE="nvidia"
+                print_info "NVIDIA videókártya észlelve"
+            elif lspci | grep -i "amd" > /dev/null || lspci | grep -i "radeon" > /dev/null; then
+                GPU_TYPE="amd"
+                print_info "AMD videókártya észlelve"
+            elif lspci | grep -i "intel" > /dev/null; then
+                GPU_TYPE="intel"
+                print_info "Intel integrált videókártya észlelve"
+            else
+                GPU_TYPE="unknown"
+                print_warning "Ismeretlen videókártya, alap Steam telepítés"
+            fi
+
+            # Steam telepítése
+            if install_package "Pacman" "steam"; then
+                # Videókártya specifikus csomagok telepítése
+                case "$GPU_TYPE" in
+                    "nvidia")
+                        print_info "NVIDIA illesztőprogramok és optimalizációk telepítése..."
+                        # NVIDIA illesztőprogramok
+                        sudo pacman -S --noconfirm nvidia nvidia-utils nvidia-settings 2>/dev/null && print_success "NVIDIA illesztőprogramok telepítve"
+                        
+                        # NVIDIA-dkms for kernel compatibility
+                        sudo pacman -S --noconfirm nvidia-dkms 2>/dev/null && print_success "NVIDIA DKMS telepítve"
+                        
+                        # Vulkan support
+                        sudo pacman -S --noconfirm vulkan-icd-loader vulkan-tools 2>/dev/null && print_success "Vulkan támogatás telepítve"
+                        
+                        # 32-bit support
+                        sudo pacman -S --noconfirm lib32-nvidia-utils lib32-vulkan-icd-loader 2>/dev/null && print_success "32 bites támogatás telepítve"
+                        
+                        # Game optimizations
+                        sudo pacman -S --noconfirm gamemode lib32-gamemode 2>/dev/null && print_success "Gamemode telepítve"
+                        ;;
+                    "amd")
+                        print_info "AMD optimalizációk telepítése..."
+                        # Vulkan support
+                        sudo pacman -S --noconfirm vulkan-radeon vulkan-icd-loader vulkan-tools 2>/dev/null && print_success "Vulkan támogatás telepítve"
+                        
+                        # 32-bit support
+                        sudo pacman -S --noconfirm lib32-vulkan-icd-loader lib32-vulkan-radeon 2>/dev/null && print_success "32 bites támogatás telepítve"
+                        
+                        # Mesa with performance optimizations
+                        sudo pacman -S --noconfirm mesa lib32-mesa 2>/dev/null && print_success "Mesa grafikus könyvtárak telepítve"
+                        
+                        # Game optimizations
+                        sudo pacman -S --noconfirm gamemode lib32-gamemode 2>/dev/null && print_success "Gamemode telepítve"
+                        
+                        # AMD GPU monitoring tools
+                        sudo pacman -S --noconfirm radeontop 2>/dev/null && print_success "RadeonTOP monitoring telepítve"
+                        ;;
+                    "intel")
+                        print_info "Intel optimalizációk telepítése..."
+                        # Vulkan support
+                        sudo pacman -S --noconfirm vulkan-intel vulkan-icd-loader vulkan-tools 2>/dev/null && print_success "Vulkan támogatás telepítve"
+                        
+                        # 32-bit support
+                        sudo pacman -S --noconfirm lib32-vulkan-intel lib32-vulkan-icd-loader 2>/dev/null && print_success "32 bites támogatás telepítve"
+                        
+                        # Mesa
+                        sudo pacman -S --noconfirm mesa lib32-mesa 2>/dev/null && print_success "Mesa grafikus könyvtárak telepítve"
+                        
+                        # Game optimizations
+                        sudo pacman -S --noconfirm gamemode lib32-gamemode 2>/dev/null && print_success "Gamemode telepítve"
+                        ;;
+                    *)
+                        print_info "Alap Steam telepítés ismeretlen videókártyához..."
+                        # Basic Vulkan support
+                        sudo pacman -S --noconfirm vulkan-icd-loader vulkan-tools 2>/dev/null
+                        sudo pacman -S --noconfirm lib32-vulkan-icd-loader 2>/dev/null
+                        ;;
+                esac
+                
+                # Általános játékoptimalizáló csomagok
+                print_info "Általános játékoptimalizáló csomagok telepítése..."
+                sudo pacman -S --noconfirm lib32-systemd lib32-openssl lib32-libpulse 2>/dev/null
+                
+                # Wine és Proton függőségek
+                print_info "Wine és Proton függőségek telepítése..."
+                sudo pacman -S --noconfirm wine-staging winetricks giflib lib32-giflib libpng lib32-libpng libldap lib32-libldap \
+                gnutls lib32-gnutls mpg123 lib32-mpg123 openal lib32-openal v4l-utils lib32-v4l-utils libpulse lib32-libpulse \
+                libgpg-error lib32-libgpg-error alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib libjpeg-turbo lib32-libjpeg-turbo \
+                sqlite lib32-sqlite libxcomposite lib32-libxcomposite libxinerama lib32-libxinerama ncurses lib32-ncurses \
+                opencl-icd-loader lib32-opencl-icd-loader libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs 2>/dev/null
+                
+                # Proton-GE automatikus telepítése (legújabb verzió)
+                print_info "Legújabb Proton-GE verzió telepítése..."
+                PROTON_GE_DIR="$HOME/.steam/root/compatibilitytools.d"
+                mkdir -p "$PROTON_GE_DIR"
+                
+                # Legújabb Proton-GE letöltése
+                DOWNLOAD_URL=$(curl -s "https://api.github.com/repos/GloriousEggroll/proton-ge-custom/releases/latest" | grep "browser_download_url.*\.tar\.gz" | head -1 | cut -d '"' -f 4)
+                
+                if [ -n "$DOWNLOAD_URL" ]; then
+                    print_info "Proton-GE letöltése: $(basename "$DOWNLOAD_URL")"
+                    
+                    if wget -q --show-progress -O "/tmp/proton-ge-latest.tar.gz" "$DOWNLOAD_URL"; then
+                        if tar -xzf "/tmp/proton-ge-latest.tar.gz" -C "$PROTON_GE_DIR"; then
+                            print_success "Proton-GE sikeresen telepítve"
+                            # Kicsomagolt mappa nevének megjelenítése
+                            EXTRACTED_DIR=$(ls -1 "$PROTON_GE_DIR" | grep "GE-Proton" | head -1)
+                            if [ -n "$EXTRACTED_DIR" ]; then
+                                print_info "Telepítve: $EXTRACTED_DIR"
+                            fi
+                        else
+                            print_warning "Proton-GE kicsomagolása sikertelen"
+                        fi
+                        rm -f "/tmp/proton-ge-latest.tar.gz"
+                    else
+                        print_warning "Proton-GE letöltése sikertelen"
+                    fi
+                else
+                    print_warning "Nem sikerült lekérni a Proton-GE letöltési URL-t"
+                fi
+                
+                # ProtonUp-Qt telepítése (grafikus Proton kezelő)
+                print_info "ProtonUp-Qt telepítése (grafikus Proton kezelő)..."
+                if command -v flatpak >/dev/null 2>&1; then
+                    if flatpak install -y --noninteractive flathub com.vysp3r.ProtonUp 2>/dev/null; then
+                        print_success "ProtonUp-Qt telepítve (Flatpak)"
+                    else
+                        print_warning "ProtonUp-Qt Flatpak telepítése sikertelen"
+                    fi
+                fi
+                
+                # Ha flatpak sikertelen vagy nincs, próbáljuk yay-val
+                if command -v yay >/dev/null 2>&1; then
+                    if yay -S --noconfirm protonup-qt 2>/dev/null; then
+                        print_success "ProtonUp-Qt telepítve (Yay)"
+                    else
+                        print_warning "ProtonUp-Qt Yay telepítése sikertelen"
+                    fi
+                fi
+                
+                # Steam konfigurációs útmutató
+                print_info "Steam konfigurációs útmutató:"
+                echo -e "${GREEN}1.${RESET} Indítsd el a Steam-et"
+                echo -e "${GREEN}2.${RESET} Menj: Beállítások → Steam Play"
+                echo -e "${GREEN}3.${RESET} Engedélyezd: 'Enable Steam Play for supported titles'"
+                echo -e "${GREEN}4.${RESET} Engedélyezd: 'Enable Steam Play for all other titles'"
+                echo -e "${GREEN}5.${RESET} Válaszd ki a kívánt Proton verziót"
+                echo -e "${GREEN}6.${RESET} A ProtonUp-Qt segítségével telepíthetsz további verziókat"
+                
+                INSTALL_SUCCESS=true
+                print_success "Steam és optimalizációk sikeresen telepítve"
+            else
+                print_error "Hiba: A Steam telepítése sikertelen volt."
+                INSTALL_SUCCESS=false
+            fi
+            ;;              
         "Spotify")
             if install_package "Pacman" "spotify-launcher"; then INSTALL_SUCCESS=true; fi
             ;;
