@@ -188,7 +188,7 @@ fi
 
 LANGUAGE=$(zenity --list --radiolist --title="Nyelvválasztás" --text="Válassza ki a telepítő nyelvét:" --column="Választás" --column="Nyelv" TRUE "Hungarian" FALSE "English")
 
-if [[ "$LANGUAGE" == "Magyar" ]]; then
+if [[ "$LANGUAGE" == "Hungarian" ]]; then
     ./hu_installer.sh
 elif [[ "$LANGUAGE" == "English" ]]; then
     ./en_installer.sh
